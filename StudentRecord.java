@@ -47,8 +47,14 @@ public class StudentRecord {
                String name = sc.next();
                System.out.println("Enter Student Marks");
                int marks = sc.nextInt();
-               studentRecords.add(new StudentRecord(id,name,marks));
+               if(marks<=100) {
+                   studentRecords.add(new StudentRecord(id, name, marks));
+               }
+               else{
+                   System.out.println("Invalid Marks! Please enter less than or equal to 100");
+               }
             }
+
             else if(choice==2){
                 if(studentRecords.isEmpty()){
                     System.out.println("There are no records in the database.");
@@ -64,17 +70,23 @@ public class StudentRecord {
                 int id = sc.nextInt();
                 for(StudentRecord studentRecord:studentRecords){
                     if(studentRecord.getId()==id){
+                        System.out.println("Enter new ID : ");
+                        int newId = sc.nextInt();
+                        studentRecord.setId(newId);
                         System.out.println("Enter new name : ");
                         String newName = sc.next();
                         studentRecord.setName(newName);
                         System.out.println("Enter new marks : ");
                         int newMarks = sc.nextInt();
-                        studentRecord.setMarks(newMarks);
-                        System.out.println("Enter new ID : ");
-                        int newId = sc.nextInt();
-                        studentRecord.setId(newId);
-                        System.out.println("Updated Successfully!");
-                        System.out.println(studentRecord);
+                        if(newMarks<=100) {
+                            studentRecord.setMarks(newMarks);
+                            System.out.println("Updated Successfully!");
+                            System.out.println(studentRecord);
+                        }
+                        else {
+                            System.out.println("Invalid Marks! Please enter less than or equal to 100");
+                        }
+
                     }
                 }
             }
